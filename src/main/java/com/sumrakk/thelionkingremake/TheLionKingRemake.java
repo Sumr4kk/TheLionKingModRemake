@@ -1,11 +1,13 @@
 package com.sumrakk.thelionkingremake;
 
+import com.sumrakk.thelionkingremake.blocks.ModBlocks;
 import com.sumrakk.thelionkingremake.items.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -37,7 +39,8 @@ public class TheLionKingRemake
         eventBus.addListener(this::processIMC);
         eventBus.addListener(this::processClient);
 
-        ModItems.register(eventBus);
+        ModItems.ITEMS.register(eventBus);
+        ModBlocks.BLOCKS.register(eventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }

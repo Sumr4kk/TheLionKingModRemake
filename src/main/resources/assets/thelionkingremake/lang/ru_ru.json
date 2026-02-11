@@ -1,4 +1,7 @@
 {
   "item.thelionkingremake.logo" : "Логотип",
-  "itemGroup.thelionkingremake": "Король лев: Ремейк"
+  "itemGroup.thelionkingremakeitems": "Король Лев: Ремейк. Предметы",
+  "itemGroup.thelionkingremakeblocks": "Король Лев: Ремейк. Блоки",
+  "block.thelionkingremake.acacialeaves" : "Листья Акации",
+  "block.thelionkingremake.pridestone" : "Камень Прайда"
 }
