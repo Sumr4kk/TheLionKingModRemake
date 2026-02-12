@@ -1,7 +1,10 @@
 {
-  "item.thelionkingremake.logo" : "Logo",
   "itemGroup.thelionkingremakeitems": "The Lion King: Remake. Items",
   "itemGroup.thelionkingremakeblocks": "The Lion King: Remake. Blocks",
+  "item.thelionkingremake.logo" : "Logo",
+  "block.thelionkingremake.acaciasapling" : "Acacia Sapling",
   "block.thelionkingremake.acacialeaves" : "Acacia Leaves",
-  "block.thelionkingremake.pridestone" : "Pride Stone"
+  "block.thelionkingremake.pridestone" : "Pride Stone",
+  "block.thelionkingremake.wood_acacia": "Acacia Log",
+  "block.thelionkingremake.planks_acacia": "Acacia Planks"
 }

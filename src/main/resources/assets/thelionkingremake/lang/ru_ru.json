@@ -1,7 +1,10 @@
 {
-  "item.thelionkingremake.logo" : "Логотип",
   "itemGroup.thelionkingremakeitems": "Король Лев: Ремейк. Предметы",
   "itemGroup.thelionkingremakeblocks": "Король Лев: Ремейк. Блоки",
+  "item.thelionkingremake.logo" : "Логотип",
+  "block.thelionkingremake.acaciasapling" : "Сажанец Акации",
   "block.thelionkingremake.acacialeaves" : "Листья Акации",
-  "block.thelionkingremake.pridestone" : "Камень Прайда"
+  "block.thelionkingremake.pridestone" : "Камень Прайда",
+  "block.thelionkingremake.wood_acacia": "Бревно Акации",
+  "block.thelionkingremake.planks_acacia": "Доски Акации"
 }

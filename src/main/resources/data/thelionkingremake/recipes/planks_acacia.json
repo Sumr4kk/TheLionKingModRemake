@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "thelionkingremake:wood_acacia"
+    }
+  ],
+  "result": {
+    "item": "thelionkingremake:planks_acacia",
+    "count": 4
+  }
+}

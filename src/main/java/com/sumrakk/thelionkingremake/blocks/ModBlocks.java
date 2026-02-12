@@ -1,10 +1,10 @@
 package com.sumrakk.thelionkingremake.blocks;
 
 import com.sumrakk.thelionkingremake.TheLionKingRemake;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
+import com.sumrakk.thelionkingremake.world.gen.tree.PrideTree;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.trees.AcaciaTree;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -28,5 +28,26 @@ public class ModBlocks {
             .setRequiresTool()
             .harvestLevel(0)
             .harvestTool(ToolType.PICKAXE)
+    ));
+    public static final RegistryObject<Block> ACACIASAPLING = BLOCKS.register("acaciasapling", () -> new SaplingBlock(new PrideTree(), AbstractBlock.Properties.create(Material.PLANTS)
+            .doesNotBlockMovement()
+            .hardnessAndResistance(0.0f)
+            .sound(SoundType.PLANT)
+            .notSolid()
+            .setOpaque((state, reader, pos) -> false)
+            .setBlocksVision((state, reader, pos) -> false)
+            .tickRandomly()  // обязательно для роста
+    ));
+    public static final RegistryObject<Block> ACACIA_LOG = BLOCKS.register("wood_acacia", () -> new RotatedPillarBlock(AbstractBlock.Properties.create(Material.WOOD)
+            .hardnessAndResistance(2.0f)
+            .sound(SoundType.WOOD)
+            .harvestLevel(0)
+            .harvestTool(ToolType.AXE)
+    ));
+    public static final RegistryObject<Block> PLANKS_ACACIA = BLOCKS.register("planks_acacia", () -> new Block(AbstractBlock.Properties.create(Material.WOOD)
+            .hardnessAndResistance(2.0f, 3.0f)
+            .sound(SoundType.WOOD)
+            .harvestLevel(0)
+            .harvestTool(ToolType.AXE)
     ));
 }
