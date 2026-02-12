@@ -16,6 +16,7 @@ public class ClientEvents {
         event.enqueueWork(() -> {
             RenderTypeLookup.setRenderLayer(ModBlocks.ACACIASAPLING.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.RAINFORESTSAPLING.get(), RenderType.getCutout());
+            RenderTypeLookup.setRenderLayer(ModBlocks.MANGOSAPLING.get(), RenderType.getCutout());
         });
     }
 }

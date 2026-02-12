@@ -1,6 +1,6 @@
 {
-  "itemGroup.thelionkingremakeitems": "The Lion King: Remake. Items",
-  "itemGroup.thelionkingremakeblocks": "The Lion King: Remake. Blocks",
+  "itemGroup.thelionkingremake_items": "The Lion King: Remake. Items",
+  "itemGroup.thelionkingremake_blocks": "The Lion King: Remake. Blocks",
   "item.thelionkingremake.logo" : "Logo",
   "block.thelionkingremake.acaciasapling" : "Acacia Sapling",
   "block.thelionkingremake.acacialeaves" : "Acacia Leaves",
@@ -10,5 +10,9 @@
   "block.thelionkingremake.rainforestsapling" : "Rainforest Sapling",
   "block.thelionkingremake.rainforestleaves" : "Rainforest Leaves",
   "block.thelionkingremake.wood_rainforest": "Rainforest Log",
-  "block.thelionkingremake.planks_rainforest": "Rainforest Planks"
+  "block.thelionkingremake.planks_rainforest": "Rainforest Planks",
+  "block.thelionkingremake.mangosapling" : "Mango Sapling",
+  "block.thelionkingremake.mangoleaves" : "Mango Leaves",
+  "block.thelionkingremake.wood_mango": "Mango Log",
+  "block.thelionkingremake.planks_mango": "Mango Planks"
 }

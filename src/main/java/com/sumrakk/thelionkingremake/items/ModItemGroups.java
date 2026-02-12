@@ -1,36 +1,65 @@
 package com.sumrakk.thelionkingremake.items;
 
+import com.sumrakk.thelionkingremake.blocks.ModBlocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ModItemGroups {
-    public static final ItemGroup THE_LION_KING_REMAKE_ITEMS = new ItemGroup("thelionkingremakeitems") {
-        private ItemStack cachedIcon = null;
+    // ============= ВКЛАДКА ДЛЯ ПРЕДМЕТОВ =============
+    public static final ItemGroup THE_LION_KING_REMAKE_ITEMS = new ItemGroup("thelionkingremake_items") {
         @Override
         public ItemStack createIcon() {
-            if (cachedIcon == null) {
-                if (ModItems.LOGO != null && ModItems.LOGO.isPresent()) {
-                    cachedIcon = new ItemStack(ModItems.LOGO.get());
-                } else {
-                    cachedIcon = new ItemStack(net.minecraft.item.Items.APPLE);
-                }
-            }
-            return cachedIcon;
+            return new ItemStack(ModItems.LOGO.get());
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public void fill(NonNullList<ItemStack> items) {
+            items.clear();
+
+            // ============= ПРЕДМЕТЫ =============
+            items.add(new ItemStack(ModItems.LOGO.get()));
+
+            // ============= САЖЕНЦЫ =============
+            items.add(new ItemStack(ModBlocks.ACACIASAPLING.get()));
+            items.add(new ItemStack(ModBlocks.RAINFORESTSAPLING.get()));
+            items.add(new ItemStack(ModBlocks.MANGOSAPLING.get()));
         }
     };
 
-    public static final ItemGroup THE_LION_KING_REMAKE_BLOCKS = new ItemGroup("thelionkingremakeblocks") {
-        private ItemStack cachedIcon = null;
+    // ============= ВКЛАДКА ДЛЯ БЛОКОВ =============
+    public static final ItemGroup THE_LION_KING_REMAKE_BLOCKS = new ItemGroup("thelionkingremake_blocks") {
         @Override
         public ItemStack createIcon() {
-            if (cachedIcon == null) {
-                if (ModItems.PRIDESTONE != null && ModItems.PRIDESTONE.isPresent()) {
-                    cachedIcon = new ItemStack(ModItems.PRIDESTONE.get());
-                } else {
-                    cachedIcon = new ItemStack(net.minecraft.item.Items.APPLE);
-                }
-            }
-            return cachedIcon;
+            return new ItemStack(ModBlocks.PRIDESTONE.get());
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public void fill(NonNullList<ItemStack> items) {
+            // Очищаем стандартное наполнение
+            items.clear();
+
+            // ============= 1. БРЁВНА =============
+            items.add(new ItemStack(ModBlocks.ACACIA_LOG.get()));
+            items.add(new ItemStack(ModBlocks.RAINFOREST_LOG.get()));
+            items.add(new ItemStack(ModBlocks.MANGO_LOG.get()));
+
+            // ============= 2. ДОСКИ =============
+            items.add(new ItemStack(ModBlocks.PLANKS_ACACIA.get()));
+            items.add(new ItemStack(ModBlocks.PLANKS_RAINFOREST.get()));
+            items.add(new ItemStack(ModBlocks.PLANKS_MANGO.get()));
+
+            // ============= 3. ЛИСТВА =============
+            items.add(new ItemStack(ModBlocks.ACACIALEAVES.get()));
+            items.add(new ItemStack(ModBlocks.RAINFORESTLEAVES.get()));
+            items.add(new ItemStack(ModBlocks.MANGOLEAVES.get()));
+
+            // ============= 4. КАМЕНЬ =============
+            items.add(new ItemStack(ModBlocks.PRIDESTONE.get()));
         }
     };
 }
