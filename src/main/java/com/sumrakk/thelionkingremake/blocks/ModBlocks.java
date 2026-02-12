@@ -2,6 +2,7 @@ package com.sumrakk.thelionkingremake.blocks;
 
 import com.sumrakk.thelionkingremake.TheLionKingRemake;
 import com.sumrakk.thelionkingremake.world.gen.tree.PrideTree;
+import com.sumrakk.thelionkingremake.world.gen.tree.RainForestTree;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.trees.AcaciaTree;
@@ -12,7 +13,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, TheLionKingRemake.MOD_ID);
-
     public static final RegistryObject<Block> ACACIALEAVES = BLOCKS.register("acacialeaves", () -> new Block(AbstractBlock.Properties.create(Material.LEAVES)
             .hardnessAndResistance(0.2f)
             .sound(SoundType.PLANT)
@@ -45,6 +45,35 @@ public class ModBlocks {
             .harvestTool(ToolType.AXE)
     ));
     public static final RegistryObject<Block> PLANKS_ACACIA = BLOCKS.register("planks_acacia", () -> new Block(AbstractBlock.Properties.create(Material.WOOD)
+            .hardnessAndResistance(2.0f, 3.0f)
+            .sound(SoundType.WOOD)
+            .harvestLevel(0)
+            .harvestTool(ToolType.AXE)
+    ));
+    public static final RegistryObject<Block> RAINFORESTLEAVES = BLOCKS.register("rainforestleaves", () -> new Block(AbstractBlock.Properties.create(Material.LEAVES)
+            .hardnessAndResistance(0.2f)
+            .sound(SoundType.PLANT)
+            .notSolid()
+            .setOpaque((state, reader, pos) -> false)
+            .setSuffocates((state, reader, pos) -> false)
+            .setBlocksVision((state, reader, pos) -> false)
+    ));
+    public static final RegistryObject<Block> RAINFORESTSAPLING = BLOCKS.register("rainforestsapling", () -> new SaplingBlock(new RainForestTree(), AbstractBlock.Properties.create(Material.PLANTS)
+            .doesNotBlockMovement()
+            .hardnessAndResistance(0.0f)
+            .sound(SoundType.PLANT)
+            .notSolid()
+            .setOpaque((state, reader, pos) -> false)
+            .setBlocksVision((state, reader, pos) -> false)
+            .tickRandomly()  // обязательно для роста
+    ));
+    public static final RegistryObject<Block> RAINFOREST_LOG = BLOCKS.register("wood_rainforest", () -> new RotatedPillarBlock(AbstractBlock.Properties.create(Material.WOOD)
+            .hardnessAndResistance(2.0f)
+            .sound(SoundType.WOOD)
+            .harvestLevel(0)
+            .harvestTool(ToolType.AXE)
+    ));
+    public static final RegistryObject<Block> PLANKS_RAINFOREST = BLOCKS.register("planks_rainforest", () -> new Block(AbstractBlock.Properties.create(Material.WOOD)
             .hardnessAndResistance(2.0f, 3.0f)
             .sound(SoundType.WOOD)
             .harvestLevel(0)

@@ -2,6 +2,7 @@ package com.sumrakk.thelionkingremake;
 
 import com.sumrakk.thelionkingremake.blocks.ModBlocks;
 import com.sumrakk.thelionkingremake.items.ModItems;
+import com.sumrakk.thelionkingremake.world.gen.ModFeatures;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
@@ -41,7 +42,7 @@ public class TheLionKingRemake
 
         ModItems.ITEMS.register(eventBus);
         ModBlocks.BLOCKS.register(eventBus);
-
+        ModFeatures.FEATURES.register(eventBus);
         MinecraftForge.EVENT_BUS.register(this);
     }
 

@@ -6,5 +6,9 @@
   "block.thelionkingremake.acacialeaves" : "Листья Акации",
   "block.thelionkingremake.pridestone" : "Камень Прайда",
   "block.thelionkingremake.wood_acacia": "Бревно Акации",
-  "block.thelionkingremake.planks_acacia": "Доски Акации"
+  "block.thelionkingremake.planks_acacia": "Доски Акации",
+  "block.thelionkingremake.rainforestsapling" : "Сажанец Дождевого Дерева",
+  "block.thelionkingremake.rainforestleaves" : "Листья Дождевого Дерева",
+  "block.thelionkingremake.wood_rainforest": "Бревно Дождевого Дерева",
+  "block.thelionkingremake.planks_rainforest": "Доски Дождевого Дерева"
 }

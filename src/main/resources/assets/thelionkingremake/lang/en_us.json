@@ -6,5 +6,9 @@
   "block.thelionkingremake.acacialeaves" : "Acacia Leaves",
   "block.thelionkingremake.pridestone" : "Pride Stone",
   "block.thelionkingremake.wood_acacia": "Acacia Log",
-  "block.thelionkingremake.planks_acacia": "Acacia Planks"
+  "block.thelionkingremake.planks_acacia": "Acacia Planks",
+  "block.thelionkingremake.rainforestsapling" : "Rainforest Sapling",
+  "block.thelionkingremake.rainforestleaves" : "Rainforest Leaves",
+  "block.thelionkingremake.wood_rainforest": "Rainforest Log",
+  "block.thelionkingremake.planks_rainforest": "Rainforest Planks"
 }
