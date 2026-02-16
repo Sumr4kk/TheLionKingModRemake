@@ -1,6 +1,7 @@
 package com.sumrakk.thelionkingremake.world.gen;
 
 import com.sumrakk.thelionkingremake.TheLionKingRemake;
+import com.sumrakk.thelionkingremake.world.gen.feature.MangoTreeFeature;
 import com.sumrakk.thelionkingremake.world.gen.feature.PassionTreeFeature;
 import com.sumrakk.thelionkingremake.world.gen.feature.TwoLayerRainForestTreeFeature;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
@@ -26,4 +27,9 @@ public class ModFeatures {
     public static final RegistryObject<Feature<BaseTreeFeatureConfig>> PASSION_TREE =
             FEATURES.register("passion_tree",
                     () -> new PassionTreeFeature(BaseTreeFeatureConfig.CODEC));
+
+    // MangoTree фича
+    public static final RegistryObject<Feature<BaseTreeFeatureConfig>> MANGO_TREE =
+            FEATURES.register("mango_tree",
+                    () -> new MangoTreeFeature(BaseTreeFeatureConfig.CODEC));
 }

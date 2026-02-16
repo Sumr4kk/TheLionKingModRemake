@@ -3,6 +3,7 @@ package com.sumrakk.thelionkingremake.items;
 import com.sumrakk.thelionkingremake.TheLionKingRemake;
 import com.sumrakk.thelionkingremake.blocks.ModBlocks;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -83,6 +84,11 @@ public class ModItems {
 
     public static final RegistryObject<Item> PASSIONSAPLING_ITEM = ITEMS.register("passionsapling",
             () -> new BlockItem(ModBlocks.PASSIONSAPLING.get(), new Item.Properties().maxStackSize(64)));
+
+    // =========== ПЛОДЫ =============
+    public static final RegistryObject<Item> MANGO_FRUIT = ITEMS.register("mango_fruit",
+            () -> new Item(new Item.Properties().maxStackSize(64).food(new Food.Builder()
+                    .hunger(4).saturation(0.6f).build())));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

@@ -29,6 +29,9 @@ public class ModItemGroups {
             items.add(new ItemStack(ModBlocks.MANGOSAPLING.get()));
             items.add(new ItemStack(ModBlocks.BANANASAPLING.get()));
             items.add(new ItemStack(ModBlocks.PASSIONSAPLING.get()));
+
+            // =========== ПЛОДЫ ============
+            items.add(new ItemStack(ModItems.MANGO_FRUIT.get()));
         }
     };
 

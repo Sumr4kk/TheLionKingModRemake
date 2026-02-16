@@ -1,0 +1,7 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "thelionkingremake:block/mango_fruit"
+  },
+  "render_type": "cutout"
+}
