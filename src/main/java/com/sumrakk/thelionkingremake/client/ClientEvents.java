@@ -18,6 +18,7 @@ public class ClientEvents {
             RenderTypeLookup.setRenderLayer(ModBlocks.RAINFORESTSAPLING.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.MANGOSAPLING.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.BANANASAPLING.get(), RenderType.getCutout());
+            RenderTypeLookup.setRenderLayer(ModBlocks.PASSIONSAPLING.get(), RenderType.getCutout());
         });
     }
 }

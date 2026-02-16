@@ -18,5 +18,9 @@
   "block.thelionkingremake.bananasapling" : "Banana Sapling",
   "block.thelionkingremake.bananaleaves" : "Banana Leaves",
   "block.thelionkingremake.wood_banana": "Banana Log",
-  "block.thelionkingremake.planks_banana": "Banana Planks"
+  "block.thelionkingremake.planks_banana": "Banana Planks",
+  "block.thelionkingremake.passionsapling" : "Passion Sapling",
+  "block.thelionkingremake.passionleaves" : "Passion Leaves",
+  "block.thelionkingremake.wood_passion": "Passion Log",
+  "block.thelionkingremake.planks_passion": "Passion Planks"
 }

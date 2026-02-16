@@ -14,15 +14,30 @@ public class RainForestTree extends Tree {
     @Nullable
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random random, boolean largeHive) {
-        // Используем НАШУ кастомную фичу с двухслойной листвой!
-        BaseTreeFeatureConfig config = new BaseTreeFeatureConfig.Builder(
-                new SimpleBlockStateProvider(ModBlocks.RAINFOREST_LOG.get().getDefaultState()),
-                new SimpleBlockStateProvider(ModBlocks.RAINFORESTLEAVES.get().getDefaultState()),
-                null,  // Не используется в кастомной фиче
-                null,  // Не используется в кастомной фиче
-                new TwoLayerFeature(0, 0, 0)
-        ).build();
+        // 10% шанс на ГИГАНТСКОЕ дерево
+        if (random.nextInt(10) == 0) {
+            // ГИГАНТСКОЕ дерево
+            BaseTreeFeatureConfig config = new BaseTreeFeatureConfig.Builder(
+                    new SimpleBlockStateProvider(ModBlocks.RAINFOREST_LOG.get().getDefaultState()),
+                    new SimpleBlockStateProvider(ModBlocks.RAINFORESTLEAVES.get().getDefaultState()),
+                    null,
+                    null,
+                    new TwoLayerFeature(0, 0, 0)
+            ).build();
 
-        return ModFeatures.TWO_LAYER_RAINFOREST_TREE.get().withConfiguration(config);
+            return ModFeatures.GIANT_TWO_LAYER_RAINFOREST_TREE.get().withConfiguration(config);
+
+        } else {
+            // Обычное дерево
+            BaseTreeFeatureConfig config = new BaseTreeFeatureConfig.Builder(
+                    new SimpleBlockStateProvider(ModBlocks.RAINFOREST_LOG.get().getDefaultState()),
+                    new SimpleBlockStateProvider(ModBlocks.RAINFORESTLEAVES.get().getDefaultState()),
+                    null,
+                    null,
+                    new TwoLayerFeature(0, 0, 0)
+            ).build();
+
+            return ModFeatures.TWO_LAYER_RAINFOREST_TREE.get().withConfiguration(config);
+        }
     }
 }

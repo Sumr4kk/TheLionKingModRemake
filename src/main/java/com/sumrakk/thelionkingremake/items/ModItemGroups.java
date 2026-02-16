@@ -28,6 +28,7 @@ public class ModItemGroups {
             items.add(new ItemStack(ModBlocks.RAINFORESTSAPLING.get()));
             items.add(new ItemStack(ModBlocks.MANGOSAPLING.get()));
             items.add(new ItemStack(ModBlocks.BANANASAPLING.get()));
+            items.add(new ItemStack(ModBlocks.PASSIONSAPLING.get()));
         }
     };
 
@@ -49,18 +50,21 @@ public class ModItemGroups {
             items.add(new ItemStack(ModBlocks.RAINFOREST_LOG.get()));
             items.add(new ItemStack(ModBlocks.MANGO_LOG.get()));
             items.add(new ItemStack(ModBlocks.BANANA_LOG.get()));
+            items.add(new ItemStack(ModBlocks.PASSION_LOG.get()));
 
             // ============= 2. ДОСКИ =============
             items.add(new ItemStack(ModBlocks.PLANKS_ACACIA.get()));
             items.add(new ItemStack(ModBlocks.PLANKS_RAINFOREST.get()));
             items.add(new ItemStack(ModBlocks.PLANKS_MANGO.get()));
             items.add(new ItemStack(ModBlocks.PLANKS_BANANA.get()));
+            items.add(new ItemStack(ModBlocks.PLANKS_PASSION.get()));
 
             // ============= 3. ЛИСТВА =============
             items.add(new ItemStack(ModBlocks.ACACIALEAVES.get()));
             items.add(new ItemStack(ModBlocks.RAINFORESTLEAVES.get()));
             items.add(new ItemStack(ModBlocks.MANGOLEAVES.get()));
             items.add(new ItemStack(ModBlocks.BANANALEAVES.get()));
+            items.add(new ItemStack(ModBlocks.PASSIONLEAVES.get()));
 
             // ============= 4. КАМЕНЬ =============
             items.add(new ItemStack(ModBlocks.PRIDESTONE.get()));

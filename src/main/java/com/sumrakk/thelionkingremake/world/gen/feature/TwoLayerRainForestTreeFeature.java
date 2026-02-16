@@ -19,72 +19,75 @@ public class TwoLayerRainForestTreeFeature extends Feature<BaseTreeFeatureConfig
 
     @Override
     public boolean generate(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, BaseTreeFeatureConfig config) {
-        // Определяем размер дерева
-        boolean isLarge = rand.nextInt(5) < 2; // 40% большое, 60% маленькое
+        // Определяем размер по registry name фичи
+        boolean isGiant = this.getRegistryName() != null && this.getRegistryName().getPath().contains("giant");
 
         int trunkHeight;
         int middleLayerHeight;
         int topLayerHeight;
+        int middleLeafRadius;
+        int topLeafRadius;
 
-        if (isLarge) {
-            // БОЛЬШОЕ ДЕРЕВО (2x2 ствол)
-            trunkHeight = 14 + rand.nextInt(6); // 14-20 блоков
-            middleLayerHeight = 6 + rand.nextInt(3); // листва на высоте 6-8
-            topLayerHeight = trunkHeight - 2; // шапка наверху
+        if (isGiant) {
+            // ============= ГИГАНТСКОЕ ДЕРЕВО =============
+            trunkHeight = 30 + rand.nextInt(20);      // 30-50 блоков
+            middleLayerHeight = 12 + rand.nextInt(8);  // листва посередине (12-20 блоков)
+            topLayerHeight = trunkHeight - 3;          // шапка чуть ниже верхушки
+            middleLeafRadius = 4;                        // Средняя крона радиус 4
+            topLeafRadius = 5;                           // Верхняя крона радиус 5
         } else {
-            // МАЛЕНЬКОЕ ДЕРЕВО (1x1 ствол)
-            trunkHeight = 8 + rand.nextInt(4); // 8-12 блоков
-            middleLayerHeight = 4 + rand.nextInt(2); // листва на высоте 4-5
-            topLayerHeight = trunkHeight - 1; // шапка наверху
+            // ============= ОБЫЧНОЕ ДЕРЕВО =============
+            trunkHeight = 12 + rand.nextInt(8);        // 12-20 блоков
+            middleLayerHeight = 5 + rand.nextInt(5);    // листва посередине (5-10 блоков)
+            topLayerHeight = trunkHeight - 2;           // шапка наверху
+            middleLeafRadius = 3;                         // Средняя крона радиус 3
+            topLeafRadius = 4;                            // Верхняя крона радиус 4
         }
 
         // Проверяем, достаточно ли места
-        BlockPos topPos = pos.up(trunkHeight + 3);
-        if (!world.isAreaLoaded(topPos, 5) || !world.isAirBlock(topPos)) {
+        BlockPos topPos = pos.up(trunkHeight + topLeafRadius + 3);
+        if (!world.isAreaLoaded(topPos, topLeafRadius + 3) || !world.isAirBlock(topPos)) {
             return false;
         }
 
-        // ============= ГЕНЕРИРУЕМ СТВОЛ =============
-        if (isLarge) {
-            // Ствол 2x2 для большого дерева
-            for (int y = 0; y <= trunkHeight; y++) {
-                world.setBlockState(pos.add(0, y, 0), ModBlocks.RAINFOREST_LOG.get().getDefaultState(), 3);
-                world.setBlockState(pos.add(1, y, 0), ModBlocks.RAINFOREST_LOG.get().getDefaultState(), 3);
-                world.setBlockState(pos.add(0, y, 1), ModBlocks.RAINFOREST_LOG.get().getDefaultState(), 3);
-                world.setBlockState(pos.add(1, y, 1), ModBlocks.RAINFOREST_LOG.get().getDefaultState(), 3);
-            }
-        } else {
-            // Ствол 1x1 для маленького дерева
-            for (int y = 0; y <= trunkHeight; y++) {
-                world.setBlockState(pos.up(y), ModBlocks.RAINFOREST_LOG.get().getDefaultState(), 3);
-            }
+        BlockState log = ModBlocks.RAINFOREST_LOG.get().getDefaultState();
+        BlockState leaves = ModBlocks.RAINFORESTLEAVES.get().getDefaultState();
+
+        // ============= ГЕНЕРИРУЕМ СТВОЛ 1x1 =============
+        for (int y = 0; y <= trunkHeight; y++) {
+            world.setBlockState(pos.up(y), log, 3);
         }
 
         // ============= ГЕНЕРИРУЕМ НИЖНИЙ СЛОЙ ЛИСТВЫ (ПОСЕРЕДИНЕ) =============
-        generateLeafLayer(world, rand, pos.up(middleLayerHeight), isLarge ? 3 : 2);
+        generateLeafLayer(world, rand, pos.up(middleLayerHeight), middleLeafRadius, leaves);
 
         // ============= ГЕНЕРИРУЕМ ВЕРХНИЙ СЛОЙ ЛИСТВЫ (ШАПКА) =============
-        generateTopLeaves(world, rand, pos.up(topLayerHeight), isLarge ? 4 : 3, isLarge);
+        generateTopLeaves(world, rand, pos.up(topLayerHeight), topLeafRadius, leaves);
 
         return true;
     }
 
-    private void generateLeafLayer(ISeedReader world, Random rand, BlockPos center, int radius) {
-        BlockState leaves = ModBlocks.RAINFORESTLEAVES.get().getDefaultState();
-
+    private void generateLeafLayer(ISeedReader world, Random rand, BlockPos center, int radius, BlockState leaves) {
         for (int x = -radius; x <= radius; x++) {
             for (int z = -radius; z <= radius; z++) {
+                // Делаем круг, а не квадрат
                 if (x * x + z * z <= radius * radius + 1) {
                     BlockPos leafPos = center.add(x, 0, z);
-                    if (world.isAirBlock(leafPos) || world.getBlockState(leafPos).getBlock() == ModBlocks.RAINFOREST_LOG.get()) {
+
+                    // НЕ ставим листву на ствол
+                    if (x == 0 && z == 0) continue;
+
+                    if (world.isAirBlock(leafPos)) {
                         world.setBlockState(leafPos, leaves, 3);
                     }
 
-                    // Добавляем немного листвы на 1 блок ниже по краям
-                    if (Math.abs(x) == radius || Math.abs(z) == radius) {
-                        BlockPos lowerPos = center.add(x, -1, z);
-                        if (world.isAirBlock(lowerPos) && rand.nextInt(3) == 0) {
-                            world.setBlockState(lowerPos, leaves, 3);
+                    // Добавляем свисающие листья вниз по краям
+                    if (Math.abs(x) >= radius-1 || Math.abs(z) >= radius-1) {
+                        for (int down = 1; down <= 2; down++) {
+                            BlockPos lowerPos = center.add(x, -down, z);
+                            if (world.isAirBlock(lowerPos) && rand.nextInt(3) == 0) {
+                                world.setBlockState(lowerPos, leaves, 3);
+                            }
                         }
                     }
                 }
@@ -92,15 +95,16 @@ public class TwoLayerRainForestTreeFeature extends Feature<BaseTreeFeatureConfig
         }
     }
 
-    // Генерирует шапку листвы наверху (многослойную)
-    private void generateTopLeaves(ISeedReader world, Random rand, BlockPos center, int radius, boolean isLarge) {
-        BlockState leaves = ModBlocks.RAINFORESTLEAVES.get().getDefaultState();
-
-        // Нижний слой шапки
+    private void generateTopLeaves(ISeedReader world, Random rand, BlockPos center, int radius, BlockState leaves) {
+        // Нижний слой шапки (Y = 0)
         for (int x = -radius; x <= radius; x++) {
             for (int z = -radius; z <= radius; z++) {
                 if (x * x + z * z <= radius * radius + 1) {
                     BlockPos leafPos = center.add(x, 0, z);
+
+                    // НЕ ставим листву на ствол
+                    if (x == 0 && z == 0) continue;
+
                     if (world.isAirBlock(leafPos)) {
                         world.setBlockState(leafPos, leaves, 3);
                     }
@@ -108,11 +112,16 @@ public class TwoLayerRainForestTreeFeature extends Feature<BaseTreeFeatureConfig
             }
         }
 
-        // Средний слой
-        for (int x = -(radius-1); x <= (radius-1); x++) {
-            for (int z = -(radius-1); z <= (radius-1); z++) {
-                if (x * x + z * z <= (radius-1) * (radius-1) + 1) {
+        // Второй слой (Y = 1)
+        int midRadius = radius;
+        for (int x = -midRadius; x <= midRadius; x++) {
+            for (int z = -midRadius; z <= midRadius; z++) {
+                if (x * x + z * z <= midRadius * midRadius + 1) {
                     BlockPos leafPos = center.add(x, 1, z);
+
+                    // НЕ ставим листву на ствол
+                    if (x == 0 && z == 0) continue;
+
                     if (world.isAirBlock(leafPos)) {
                         world.setBlockState(leafPos, leaves, 3);
                     }
@@ -120,16 +129,86 @@ public class TwoLayerRainForestTreeFeature extends Feature<BaseTreeFeatureConfig
             }
         }
 
-        // Верхний слой (макушка)
-        BlockPos topPos = center.up(2);
-        world.setBlockState(topPos, leaves, 3);
+        // Третий слой (Y = 2)
+        int topRadius = radius - 1;
+        for (int x = -topRadius; x <= topRadius; x++) {
+            for (int z = -topRadius; z <= topRadius; z++) {
+                if (x * x + z * z <= topRadius * topRadius + 1) {
+                    BlockPos leafPos = center.add(x, 2, z);
 
-        // Боковые свисающие листья (как лианы)
-        if (isLarge) {
-            for (int i = 0; i < 4; i++) {
-                BlockPos sidePos = center.add(rand.nextInt(radius*2) - radius, -1, rand.nextInt(radius*2) - radius);
-                if (world.isAirBlock(sidePos) && world.getBlockState(sidePos.down()).getBlock() == ModBlocks.RAINFOREST_LOG.get()) {
-                    world.setBlockState(sidePos, leaves, 3);
+                    // НЕ ставим листву на ствол
+                    if (x == 0 && z == 0) continue;
+
+                    if (world.isAirBlock(leafPos)) {
+                        world.setBlockState(leafPos, leaves, 3);
+                    }
+                }
+            }
+        }
+
+        // Макушка (Y = 3) - маленький пучок
+        int tinyRadius = radius - 2;
+        if (tinyRadius > 0) {
+            for (int x = -tinyRadius; x <= tinyRadius; x++) {
+                for (int z = -tinyRadius; z <= tinyRadius; z++) {
+                    if (x * x + z * z <= tinyRadius * tinyRadius + 1) {
+                        BlockPos leafPos = center.add(x, 3, z);
+
+                        // НЕ ставим листву на ствол
+                        if (x == 0 && z == 0) continue;
+
+                        if (world.isAirBlock(leafPos)) {
+                            world.setBlockState(leafPos, leaves, 3);
+                        }
+                    }
+                }
+            }
+        } else {
+            // Если дерево маленькое, просто ставим одну листву сверху (не на ствол)
+            BlockPos topPos = center.add(1, 3, 0);
+            if (world.isAirBlock(topPos)) {
+                world.setBlockState(topPos, leaves, 3);
+            }
+            topPos = center.add(-1, 3, 0);
+            if (world.isAirBlock(topPos)) {
+                world.setBlockState(topPos, leaves, 3);
+            }
+            topPos = center.add(0, 3, 1);
+            if (world.isAirBlock(topPos)) {
+                world.setBlockState(topPos, leaves, 3);
+            }
+            topPos = center.add(0, 3, -1);
+            if (world.isAirBlock(topPos)) {
+                world.setBlockState(topPos, leaves, 3);
+            }
+        }
+
+        // Свисающие листья с нижнего слоя шапки
+        for (int x = -radius; x <= radius; x++) {
+            for (int z = -radius; z <= radius; z++) {
+                if (x * x + z * z <= radius * radius + 1) {
+                    // Пропускаем ствол
+                    if (x == 0 && z == 0) continue;
+
+                    // Свисаем вниз на 1-2 блока с краев
+                    if (Math.abs(x) >= radius-1 || Math.abs(z) >= radius-1) {
+                        for (int down = 1; down <= 2; down++) {
+                            BlockPos lowerPos = center.add(x, -down, z);
+                            if (world.isAirBlock(lowerPos) && rand.nextInt(3) == 0) {
+                                // Проверяем, не над стволом ли это
+                                boolean overTrunk = false;
+                                for (int checkY = 0; checkY < down; checkY++) {
+                                    if (world.getBlockState(lowerPos.up(checkY)).getBlock() == ModBlocks.RAINFOREST_LOG.get()) {
+                                        overTrunk = true;
+                                        break;
+                                    }
+                                }
+                                if (!overTrunk) {
+                                    world.setBlockState(lowerPos, leaves, 3);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

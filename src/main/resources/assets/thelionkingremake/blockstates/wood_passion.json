@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "thelionkingremake:block/wood_passion",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "thelionkingremake:block/wood_passion"
+    },
+    "axis=z": {
+      "model": "thelionkingremake:block/wood_passion",
+      "x": 90
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "thelionkingremake:block/passionsapling"
+  },
+  "render_type": "minecraft:cutout"
+}
