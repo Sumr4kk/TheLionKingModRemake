@@ -1,6 +1,7 @@
 package com.sumrakk.thelionkingremake.blocks;
 
 import com.sumrakk.thelionkingremake.TheLionKingRemake;
+import com.sumrakk.thelionkingremake.world.gen.tree.BananaTree;
 import com.sumrakk.thelionkingremake.world.gen.tree.MangoTree;
 import com.sumrakk.thelionkingremake.world.gen.tree.PrideTree;
 import com.sumrakk.thelionkingremake.world.gen.tree.RainForestTree;
@@ -33,6 +34,12 @@ public class ModBlocks {
             .harvestLevel(0)
             .harvestTool(ToolType.AXE)
     ));
+    public static final RegistryObject<Block> BANANA_LOG = BLOCKS.register("wood_banana", () -> new RotatedPillarBlock(AbstractBlock.Properties.create(Material.WOOD)
+            .hardnessAndResistance(2.0f)
+            .sound(SoundType.WOOD)
+            .harvestLevel(0)
+            .harvestTool(ToolType.AXE)
+    ));
 
     // ============= ДОСКИ (PLANKS) =============
     public static final RegistryObject<Block> PLANKS_ACACIA = BLOCKS.register("planks_acacia", () -> new Block(AbstractBlock.Properties.create(Material.WOOD)
@@ -48,6 +55,12 @@ public class ModBlocks {
             .harvestTool(ToolType.AXE)
     ));
     public static final RegistryObject<Block> PLANKS_MANGO = BLOCKS.register("planks_mango", () -> new Block(AbstractBlock.Properties.create(Material.WOOD)
+            .hardnessAndResistance(2.0f, 3.0f)
+            .sound(SoundType.WOOD)
+            .harvestLevel(0)
+            .harvestTool(ToolType.AXE)
+    ));
+    public static final RegistryObject<Block> PLANKS_BANANA = BLOCKS.register("planks_banana", () -> new Block(AbstractBlock.Properties.create(Material.WOOD)
             .hardnessAndResistance(2.0f, 3.0f)
             .sound(SoundType.WOOD)
             .harvestLevel(0)
@@ -72,6 +85,14 @@ public class ModBlocks {
             .setBlocksVision((state, reader, pos) -> false)
     ));
     public static final RegistryObject<Block> MANGOLEAVES = BLOCKS.register("mangoleaves", () -> new Block(AbstractBlock.Properties.create(Material.LEAVES)
+            .hardnessAndResistance(0.2f)
+            .sound(SoundType.PLANT)
+            .notSolid()
+            .setOpaque((state, reader, pos) -> false)
+            .setSuffocates((state, reader, pos) -> false)
+            .setBlocksVision((state, reader, pos) -> false)
+    ));
+    public static final RegistryObject<Block> BANANALEAVES = BLOCKS.register("bananaleaves", () -> new Block(AbstractBlock.Properties.create(Material.LEAVES)
             .hardnessAndResistance(0.2f)
             .sound(SoundType.PLANT)
             .notSolid()
@@ -109,6 +130,15 @@ public class ModBlocks {
             .tickRandomly()
     ));
     public static final RegistryObject<Block> MANGOSAPLING = BLOCKS.register("mangosapling", () -> new SaplingBlock(new MangoTree(), AbstractBlock.Properties.create(Material.PLANTS)
+            .doesNotBlockMovement()
+            .hardnessAndResistance(0.0f)
+            .sound(SoundType.PLANT)
+            .notSolid()
+            .setOpaque((state, reader, pos) -> false)
+            .setBlocksVision((state, reader, pos) -> false)
+            .tickRandomly()
+    ));
+    public static final RegistryObject<Block> BANANASAPLING = BLOCKS.register("bananasapling", () -> new SaplingBlock(new BananaTree(), AbstractBlock.Properties.create(Material.PLANTS)
             .doesNotBlockMovement()
             .hardnessAndResistance(0.0f)
             .sound(SoundType.PLANT)

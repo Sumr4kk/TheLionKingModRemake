@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "thelionkingremake:block/wood_banana_top",
+    "side": "thelionkingremake:block/wood_banana_side"
+  }
+}

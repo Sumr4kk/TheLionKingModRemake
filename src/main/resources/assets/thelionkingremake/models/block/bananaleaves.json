@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "thelionkingremake:block/bananaleaves"
+  },
+  "render_type": "cutout"
+}

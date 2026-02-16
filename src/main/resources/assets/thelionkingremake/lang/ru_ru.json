@@ -14,5 +14,9 @@
   "block.thelionkingremake.mangosapling" : "Саженец Манго",
   "block.thelionkingremake.mangoleaves" : "Листья Манго",
   "block.thelionkingremake.wood_mango": "Бревно Манго",
-  "block.thelionkingremake.planks_mango": "Доски Манго"
+  "block.thelionkingremake.planks_mango": "Доски Манго",
+  "block.thelionkingremake.bananasapling" : "Саженец Бананового Дерева",
+  "block.thelionkingremake.bananaleaves" : "Листья Бананового Дерева",
+  "block.thelionkingremake.wood_banana": "Бревно Бананового Дерева",
+  "block.thelionkingremake.planks_banana": "Доски Бананового Дерева"
 }

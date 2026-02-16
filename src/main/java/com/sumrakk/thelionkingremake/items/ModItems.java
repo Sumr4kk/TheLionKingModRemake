@@ -25,6 +25,9 @@ public class ModItems {
     public static final RegistryObject<Item> WOOD_MANGO = ITEMS.register("wood_mango",
             () -> new BlockItem(ModBlocks.MANGO_LOG.get(), new Item.Properties().maxStackSize(64)));
 
+    public static final RegistryObject<Item> WOOD_BANANA = ITEMS.register("wood_banana",
+            () -> new BlockItem(ModBlocks.BANANA_LOG.get(), new Item.Properties().maxStackSize(64)));
+
     // ============= ДОСКИ (PLANKS) =============
     public static final RegistryObject<Item> ACACIA_PLANKS = ITEMS.register("planks_acacia",
             () -> new BlockItem(ModBlocks.PLANKS_ACACIA.get(), new Item.Properties().maxStackSize(64)));
@@ -35,6 +38,9 @@ public class ModItems {
     public static final RegistryObject<Item> MANGO_PLANKS = ITEMS.register("planks_mango",
             () -> new BlockItem(ModBlocks.PLANKS_MANGO.get(), new Item.Properties().maxStackSize(64)));
 
+    public static final RegistryObject<Item> BANANA_PLANKS = ITEMS.register("planks_banana",
+            () -> new BlockItem(ModBlocks.PLANKS_BANANA.get(), new Item.Properties().maxStackSize(64)));
+
     // ============= ЛИСТВА (LEAVES) =============
     public static final RegistryObject<Item> ACACIALEAVES = ITEMS.register("acacialeaves",
             () -> new BlockItem(ModBlocks.ACACIALEAVES.get(), new Item.Properties().maxStackSize(64)));
@@ -44,6 +50,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> MANGOLEAVES = ITEMS.register("mangoleaves",
             () -> new BlockItem(ModBlocks.MANGOLEAVES.get(), new Item.Properties().maxStackSize(64)));
+
+    public static final RegistryObject<Item> BANANALEAVES = ITEMS.register("bananaleaves",
+            () -> new BlockItem(ModBlocks.BANANALEAVES.get(), new Item.Properties().maxStackSize(64)));
 
     // ============= КАМЕНЬ (STONE) =============
     public static final RegistryObject<Item> PRIDESTONE = ITEMS.register("pridestone",
@@ -58,6 +67,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> MANGOSAPLING_ITEM = ITEMS.register("mangosapling",
             () -> new BlockItem(ModBlocks.MANGOSAPLING.get(), new Item.Properties().maxStackSize(64)));
+
+    public static final RegistryObject<Item> BANANASAPLING_ITEM = ITEMS.register("bananasapling",
+            () -> new BlockItem(ModBlocks.BANANASAPLING.get(), new Item.Properties().maxStackSize(64)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

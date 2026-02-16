@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "thelionkingremake:wood_banana"
+    }
+  ],
+  "result": {
+    "item": "thelionkingremake:planks_banana",
+    "count": 4
+  }
+}
