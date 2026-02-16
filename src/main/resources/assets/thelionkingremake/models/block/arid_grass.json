@@ -1,0 +1,7 @@
+{
+  "parent": "block/tinted_cross",
+  "textures": {
+    "cross": "thelionkingremake:block/arid_grass"
+  },
+  "render_type": "cutout"
+}
