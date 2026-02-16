@@ -1,20 +1,13 @@
 package com.sumrakk.thelionkingremake.blocks;
 
 import com.sumrakk.thelionkingremake.TheLionKingRemake;
-import com.sumrakk.thelionkingremake.items.ModItemGroups;
 import com.sumrakk.thelionkingremake.world.gen.tree.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.trees.AcaciaTree;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import static com.sumrakk.thelionkingremake.items.ModItems.ITEMS;
 
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, TheLionKingRemake.MOD_ID);
@@ -182,6 +175,24 @@ public class ModBlocks {
 
     // =========== ПЛОДЫ ===============
     public static final RegistryObject<Block> MANGO_FRUIT = BLOCKS.register("mango_fruit", () -> new Block(AbstractBlock.Properties.create(Material.PLANTS)
+            .hardnessAndResistance(0.2f)
+            .sound(SoundType.PLANT)
+            .notSolid()
+            .doesNotBlockMovement()
+            .setOpaque((state, reader, pos) -> false)
+            .setBlocksVision((state, reader, pos) -> false)
+    ));
+
+    public static final RegistryObject<Block> BANANA_FRUIT = BLOCKS.register("banana_fruit", () -> new Block(AbstractBlock.Properties.create(Material.PLANTS)
+            .hardnessAndResistance(0.2f)
+            .sound(SoundType.PLANT)
+            .notSolid()
+            .doesNotBlockMovement()
+            .setOpaque((state, reader, pos) -> false)
+            .setBlocksVision((state, reader, pos) -> false)
+    ));
+
+    public static final RegistryObject<Block> PASSION_FRUIT = BLOCKS.register("passion_fruit", () -> new Block(AbstractBlock.Properties.create(Material.PLANTS)
             .hardnessAndResistance(0.2f)
             .sound(SoundType.PLANT)
             .notSolid()

@@ -10,6 +10,7 @@ import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
+import java.util.HashSet;
 
 public class PassionTreeFeature extends Feature<BaseTreeFeatureConfig> {
 
@@ -19,131 +20,145 @@ public class PassionTreeFeature extends Feature<BaseTreeFeatureConfig> {
 
     @Override
     public boolean generate(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, BaseTreeFeatureConfig config) {
-        // Параметры дерева маракуйи - как лиана, извилистое
-        int trunkHeight = 6 + rand.nextInt(8);  // 6-14 блоков
+        // Параметры лианы маракуйи
+        int vineHeight = 6 + rand.nextInt(6);  // 6-12 блоков
 
         // Проверяем место
-        BlockPos topPos = pos.up(trunkHeight + 4);
+        BlockPos topPos = pos.up(vineHeight + 4);
         if (!world.isAreaLoaded(topPos, 4) || !world.isAirBlock(topPos)) {
             return false;
         }
 
         BlockState log = ModBlocks.PASSION_LOG.get().getDefaultState();
         BlockState leaves = ModBlocks.PASSIONLEAVES.get().getDefaultState();
+        BlockState fruit = ModBlocks.PASSION_FRUIT.get().getDefaultState();
 
         // ============= ГЕНЕРИРУЕМ ИЗВИЛИСТЫЙ СТВОЛ =============
         BlockPos currentPos = pos;
-        for (int y = 0; y < trunkHeight; y++) {
-            // Ствол 1x1
+        for (int y = 0; y < vineHeight; y++) {
             world.setBlockState(currentPos, log, 3);
 
-            // Иногда делаем небольшое смещение для извилистости
-            if (y > 2 && y < trunkHeight - 2 && rand.nextInt(4) == 0) {
-                if (rand.nextBoolean()) {
-                    currentPos = currentPos.add(1, 1, 0);
-                } else {
-                    currentPos = currentPos.add(-1, 1, 0);
+            // Плавные изгибы (реже и мягче)
+            if (y > 2 && y < vineHeight - 2 && rand.nextInt(7) == 0) {
+                int dir = rand.nextInt(4);
+                if (dir == 0 && world.isAirBlock(currentPos.north().up()))
+                    currentPos = currentPos.north();
+                else if (dir == 1 && world.isAirBlock(currentPos.south().up()))
+                    currentPos = currentPos.south();
+                else if (dir == 2 && world.isAirBlock(currentPos.east().up()))
+                    currentPos = currentPos.east();
+                else if (dir == 3 && world.isAirBlock(currentPos.west().up()))
+                    currentPos = currentPos.west();
+            }
+            currentPos = currentPos.up();
+        }
+
+        // ============= ГЕНЕРИРУЕМ ЛИСТВУ =============
+        // Верхушка (основная крона)
+        BlockPos topPos2 = pos.up(vineHeight - 1);
+        for (int x = -2; x <= 2; x++) {
+            for (int z = -2; z <= 2; z++) {
+                // Круглая форма, а не квадрат
+                if (x * x + z * z <= 5) {
+                    BlockPos leafPos = topPos2.add(x, 0, z);
+                    if (world.isAirBlock(leafPos) && rand.nextBoolean()) {
+                        world.setBlockState(leafPos, leaves, 3);
+                    }
                 }
-                if (rand.nextBoolean()) {
-                    currentPos = currentPos.add(0, 0, 1);
-                } else {
-                    currentPos = currentPos.add(0, 0, -1);
-                }
-            } else {
-                currentPos = currentPos.up();
             }
         }
 
-        // ============= ГЕНЕРИРУЕМ ЛИСТВУ ПУЧКАМИ =============
-        generateLeafClusters(world, rand, pos, trunkHeight, leaves);
+        // Несколько листьев вдоль ствола (случайно)
+        for (int y = 2; y < vineHeight - 2; y += 2) {
+            if (rand.nextInt(3) == 0) {
+                BlockPos sidePos = pos.up(y);
+                for (int i = 0; i < 4; i++) {
+                    int dir = rand.nextInt(4);
+                    BlockPos leafPos = null;
+                    if (dir == 0) leafPos = sidePos.north();
+                    else if (dir == 1) leafPos = sidePos.south();
+                    else if (dir == 2) leafPos = sidePos.east();
+                    else leafPos = sidePos.west();
+
+                    if (world.isAirBlock(leafPos)) {
+                        world.setBlockState(leafPos, leaves, 3);
+                        break;
+                    }
+                }
+            }
+        }
+
+        // ============= ГЕНЕРИРУЕМ ПЛОДЫ МАРАКУЙИ =============
+        generateFruits(world, rand, pos, vineHeight, fruit);
 
         return true;
     }
 
-    private void generateLeafClusters(ISeedReader world, Random rand, BlockPos startPos, int trunkHeight, BlockState leaves) {
-        // Создаем несколько пучков листвы вдоль ствола
-        int numClusters = 3 + rand.nextInt(3); // 3-5 пучков
+    private void generateFruits(ISeedReader world, Random rand, BlockPos startPos, int vineHeight, BlockState fruit) {
+        // МЕНЬШЕ плодов: 3-5 штук
+        int numFruits = 3 + rand.nextInt(3);  // 3-5 плодов
 
-        for (int i = 0; i < numClusters; i++) {
-            int clusterY = 2 + rand.nextInt(trunkHeight - 3); // высота пучка
-            BlockPos clusterPos = startPos.up(clusterY);
+        HashSet<BlockPos> usedPositions = new HashSet<>();
 
-            // Размер пучка
-            int clusterSize = 1 + rand.nextInt(2); // 1-2
+        for (int i = 0; i < numFruits; i++) {
+            for (int attempt = 0; attempt < 30; attempt++) {
 
-            // Генерируем пучок листвы
-            for (int x = -clusterSize; x <= clusterSize; x++) {
-                for (int z = -clusterSize; z <= clusterSize; z++) {
-                    // Делаем круглую форму
-                    if (x * x + z * z <= clusterSize * clusterSize + 1) {
-                        // Не ставим на ствол
-                        if (x == 0 && z == 0) continue;
+                // Выбираем высоту вдоль ствола (не слишком низко и не слишком высоко)
+                int fruitY = 3 + rand.nextInt(vineHeight - 5);
+                BlockPos vinePos = startPos.up(fruitY);
 
-                        BlockPos leafPos = clusterPos.add(x, 0, z);
-                        if (world.isAirBlock(leafPos) && rand.nextInt(3) != 0) {
-                            world.setBlockState(leafPos, leaves, 3);
-                        }
+                // Выбираем направление
+                int side = rand.nextInt(4);
+                BlockPos fruitPos = null;
 
-                        // Иногда добавляем листву выше/ниже
-                        if (rand.nextInt(3) == 0) {
-                            BlockPos leafUp = clusterPos.add(x, 1, z);
-                            if (world.isAirBlock(leafUp)) {
-                                world.setBlockState(leafUp, leaves, 3);
-                            }
-                        }
-                        if (rand.nextInt(3) == 0) {
-                            BlockPos leafDown = clusterPos.add(x, -1, z);
-                            if (world.isAirBlock(leafDown)) {
-                                world.setBlockState(leafDown, leaves, 3);
+                if (side == 0) fruitPos = vinePos.north();
+                else if (side == 1) fruitPos = vinePos.south();
+                else if (side == 2) fruitPos = vinePos.east();
+                else fruitPos = vinePos.west();
+
+                // УБРАЛИ ГРОЗДЬЯ - просто один плод
+
+                // Проверяем место
+                if (world.isAirBlock(fruitPos) && !usedPositions.contains(fruitPos)) {
+
+                    // Проверяем, есть ли рядом ствол или листва
+                    boolean hasSupport = false;
+                    for (int dx = -1; dx <= 1; dx++) {
+                        for (int dz = -1; dz <= 1; dz++) {
+                            BlockPos checkPos = fruitPos.add(dx, 0, dz);
+                            if (world.getBlockState(checkPos).getBlock() == ModBlocks.PASSION_LOG.get() ||
+                                    world.getBlockState(checkPos).getBlock() == ModBlocks.PASSIONLEAVES.get()) {
+                                hasSupport = true;
                             }
                         }
                     }
-                }
-            }
 
-            // Добавляем свисающие лианы с пучков
-            for (int side = 0; side < 4; side++) {
-                if (rand.nextInt(3) == 0) {
-                    BlockPos vineStart = clusterPos.add(
-                            side == 0 ? clusterSize : (side == 1 ? -clusterSize : 0),
-                            0,
-                            side == 2 ? clusterSize : (side == 3 ? -clusterSize : 0)
-                    );
-
-                    // Свисаем вниз на 1-2 блока
-                    for (int down = 1; down <= 2; down++) {
-                        BlockPos vinePos = vineStart.down(down);
-                        if (world.isAirBlock(vinePos) && rand.nextInt(2) == 0) {
-                            world.setBlockState(vinePos, leaves, 3);
-                        }
+                    if (hasSupport) {
+                        world.setBlockState(fruitPos, fruit, 3);
+                        usedPositions.add(fruitPos);
+                        break;
                     }
                 }
             }
         }
 
-        // Большой пучок на верхушке
-        BlockPos topPos = startPos.up(trunkHeight);
-        int topSize = 2;
-        for (int x = -topSize; x <= topSize; x++) {
-            for (int z = -topSize; z <= topSize; z++) {
-                if (x * x + z * z <= topSize * topSize + 1) {
-                    if (x == 0 && z == 0) continue;
+        // Один-два плода на верхушке
+        int topFruits = 1 + rand.nextInt(2);  // 1-2 плода
 
-                    BlockPos leafPos = topPos.add(x, 0, z);
-                    if (world.isAirBlock(leafPos)) {
-                        world.setBlockState(leafPos, leaves, 3);
-                    }
+        for (int i = 0; i < topFruits; i++) {
+            for (int attempt = 0; attempt < 10; attempt++) {
+                int x = rand.nextInt(3) - 1;
+                int z = rand.nextInt(3) - 1;
 
-                    // Верхний слой
-                    BlockPos leafUp = topPos.add(x, 1, z);
-                    if (world.isAirBlock(leafUp) && (x * x + z * z <= (topSize-1) * (topSize-1) + 1)) {
-                        world.setBlockState(leafUp, leaves, 3);
+                if (x != 0 || z != 0) {
+                    BlockPos fruitPos = startPos.up(vineHeight).add(x, -1, z);
+                    if (world.isAirBlock(fruitPos) && !usedPositions.contains(fruitPos)) {
+                        world.setBlockState(fruitPos, fruit, 3);
+                        usedPositions.add(fruitPos);
+                        break;
                     }
                 }
             }
         }
-
-        // Макушка
-        world.setBlockState(topPos.up(2), leaves, 3);
     }
 }

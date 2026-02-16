@@ -10,8 +10,6 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import static com.sumrakk.thelionkingremake.blocks.ModBlocks.*;
-
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, TheLionKingRemake.MOD_ID);
 
@@ -88,7 +86,15 @@ public class ModItems {
     // =========== ПЛОДЫ =============
     public static final RegistryObject<Item> MANGO_FRUIT = ITEMS.register("mango_fruit",
             () -> new Item(new Item.Properties().maxStackSize(64).food(new Food.Builder()
-                    .hunger(4).saturation(0.6f).build())));
+                    .hunger(2).saturation(0.6f).build())));
+
+    public static final RegistryObject<Item> BANANA_FRUIT = ITEMS.register("banana_fruit",
+            () -> new Item(new Item.Properties().maxStackSize(64).food(new Food.Builder()
+                    .hunger(2).saturation(0.6f).build())));
+
+    public static final RegistryObject<Item> PASSION_FRUIT = ITEMS.register("passion_fruit",
+            () -> new Item(new Item.Properties().maxStackSize(64).food(new Food.Builder()
+                    .hunger(2).saturation(0.5f).build())));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

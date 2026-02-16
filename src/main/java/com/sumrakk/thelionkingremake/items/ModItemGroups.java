@@ -32,6 +32,8 @@ public class ModItemGroups {
 
             // =========== ПЛОДЫ ============
             items.add(new ItemStack(ModItems.MANGO_FRUIT.get()));
+            items.add(new ItemStack(ModItems.BANANA_FRUIT.get()));
+            items.add(new ItemStack(ModItems.PASSION_FRUIT.get()));
         }
     };
 

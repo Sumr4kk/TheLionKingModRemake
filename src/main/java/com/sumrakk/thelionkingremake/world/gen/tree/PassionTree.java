@@ -16,12 +16,11 @@ public class PassionTree extends Tree {
     @Nullable
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random random, boolean largeHive) {
-        // Используем НАШУ кастомную фичу для PassionTree!
         BaseTreeFeatureConfig config = new BaseTreeFeatureConfig.Builder(
                 new SimpleBlockStateProvider(ModBlocks.PASSION_LOG.get().getDefaultState()),
                 new SimpleBlockStateProvider(ModBlocks.PASSIONLEAVES.get().getDefaultState()),
-                null,  // Не используется в кастомной фиче
-                null,  // Не используется в кастомной фиче
+                null,
+                null,
                 new TwoLayerFeature(0, 0, 0)
         ).build();
 
