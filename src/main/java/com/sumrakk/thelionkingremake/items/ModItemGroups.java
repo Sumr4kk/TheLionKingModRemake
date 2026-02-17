@@ -23,6 +23,9 @@ public class ModItemGroups {
             // ============= ПРЕДМЕТЫ =============
             items.add(new ItemStack(ModItems.LOGO.get()));
 
+            // ============= РЕСУРСЫ ================
+            items.add(new ItemStack(ModItems.PEACOCK_GEM.get()));
+
             // ============= САЖЕНЦЫ =============
             items.add(new ItemStack(ModBlocks.ACACIASAPLING.get()));
             items.add(new ItemStack(ModBlocks.RAINFORESTSAPLING.get()));
@@ -82,6 +85,27 @@ public class ModItemGroups {
             // ============= 4. КАМЕНЬ =============
             items.add(new ItemStack(ModBlocks.PRIDESTONE.get()));
             items.add(new ItemStack(ModBlocks.ORE_PEACOCK.get()));
+        }
+    };
+
+    // ============= ВКЛАДКА ДЛЯ БЛОКОВ =============
+    public static final ItemGroup THE_LION_KING_REMAKE_TOOLS = new ItemGroup("thelionkingremake_tools") {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(ModItems.PEACOCK_SWORD.get());
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public void fill(NonNullList<ItemStack> items) {
+            // Очищаем стандартное наполнение
+            items.clear();
+
+            items.add(new ItemStack(ModItems.PEACOCK_SWORD.get()));
+            items.add(new ItemStack(ModItems.PEACOCK_PICKAXE.get()));
+            items.add(new ItemStack(ModItems.PEACOCK_AXE.get()));
+            items.add(new ItemStack(ModItems.PEACOCK_SHOVEL.get()));
+            items.add(new ItemStack(ModItems.PEACOCK_HOE.get()));
         }
     };
 }

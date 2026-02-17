@@ -2,9 +2,7 @@ package com.sumrakk.thelionkingremake.items;
 
 import com.sumrakk.thelionkingremake.TheLionKingRemake;
 import com.sumrakk.thelionkingremake.blocks.ModBlocks;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
+import net.minecraft.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -120,6 +118,37 @@ public class ModItems {
 
     public static final RegistryObject<Item> WHITE_FLOWER_ITEM = ITEMS.register("white_flower",
             () -> new BlockItem(WHITE_FLOWER.get(), new Item.Properties().maxStackSize(64)));
+
+    // =========== РЕСУРСЫ ==============
+
+    public static final RegistryObject<Item> PEACOCK_GEM = ITEMS.register("peacock_gem",
+            () -> new Item(new Item.Properties().maxStackSize(64).rarity(Rarity.UNCOMMON)));
+
+    // ============= ИНСТРУМЕНТЫ ИЗ ПАВЛИНЬЕГО САМОЦВЕТА =============
+    public static final RegistryObject<Item> PEACOCK_SWORD = ITEMS.register("peacock_sword",
+            () -> new SwordItem(ModToolTier.PEACOCK_GEM, 3, -2.4f,
+                    new Item.Properties().maxStackSize(1))
+    );
+
+    public static final RegistryObject<Item> PEACOCK_PICKAXE = ITEMS.register("peacock_pickaxe",
+            () -> new PickaxeItem(ModToolTier.PEACOCK_GEM, 1, -2.8f,
+                    new Item.Properties().maxStackSize(1))
+    );
+
+    public static final RegistryObject<Item> PEACOCK_AXE = ITEMS.register("peacock_axe",
+            () -> new AxeItem(ModToolTier.PEACOCK_GEM, 5, -3.0f,
+                    new Item.Properties().maxStackSize(1))
+    );
+
+    public static final RegistryObject<Item> PEACOCK_SHOVEL = ITEMS.register("peacock_shovel",
+            () -> new ShovelItem(ModToolTier.PEACOCK_GEM, 1.5f, -3.0f,
+                    new Item.Properties().maxStackSize(1))
+    );
+
+    public static final RegistryObject<Item> PEACOCK_HOE = ITEMS.register("peacock_hoe",
+            () -> new HoeItem(ModToolTier.PEACOCK_GEM, -3, 0.0f,
+                    new Item.Properties().maxStackSize(1))
+    );
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

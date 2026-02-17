@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "## ",
+    "#X ",
+    " X "
+  ],
+  "key": {
+    "#": {
+      "item": "thelionkingremake:peacock_gem"
+    },
+    "X": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "thelionkingremake:peacock_axe"
+  }
+}
