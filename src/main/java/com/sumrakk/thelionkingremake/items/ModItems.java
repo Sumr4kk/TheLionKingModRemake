@@ -11,6 +11,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import static com.sumrakk.thelionkingremake.blocks.ModBlocks.ARID_GRASS;
+import static com.sumrakk.thelionkingremake.blocks.ModBlocks.RED_FLOWER_BASE;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, TheLionKingRemake.MOD_ID);
@@ -100,6 +101,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> ARID_GRASS_ITEM = ITEMS.register("arid_grass",
             () -> new BlockItem(ARID_GRASS.get(), new Item.Properties().maxStackSize(64)));
+
+    public static final RegistryObject<Item> FLOWER_ITEM = ITEMS.register("red_flower",
+            () -> new BlockItem(RED_FLOWER_BASE.get(), new Item.Properties().maxStackSize(64)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

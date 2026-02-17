@@ -137,4 +137,15 @@ public class ModBlocks {
             new TallGrassBlock(AbstractBlock.Properties.create(Material.PLANTS)
             .doesNotBlockMovement().hardnessAndResistance(0.0f).sound(SoundType.PLANT).notSolid()
             .setOpaque((state, reader, pos) -> false).setBlocksVision((state, reader, pos) -> false)));
+
+    // ============= ЦВЕТЫ =============
+    public static final RegistryObject<Block> RED_FLOWER_BASE = BLOCKS.register("red_flower_base",
+            () -> new DoublePlantBlock(AbstractBlock.Properties.create(Material.PLANTS)
+                    .doesNotBlockMovement().hardnessAndResistance(0.0f).sound(SoundType.PLANT).notSolid()
+                    .setOpaque((state, reader, pos) -> false).setBlocksVision((state, reader, pos) -> false)));
+
+    public static final RegistryObject<Block> RED_FLOWER_TOP = BLOCKS.register("red_flower_top",
+            () -> new DoublePlantBlock(AbstractBlock.Properties.create(Material.PLANTS)
+                    .doesNotBlockMovement().hardnessAndResistance(0.0f).sound(SoundType.PLANT).notSolid()
+                    .setOpaque((state, reader, pos) -> false).setBlocksVision((state, reader, pos) -> false)));
 }

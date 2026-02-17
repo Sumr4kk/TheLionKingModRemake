@@ -23,6 +23,9 @@ public class ClientEvents {
             RenderTypeLookup.setRenderLayer(ModBlocks.BANANA_FRUIT.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.PASSION_FRUIT.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.ARID_GRASS.get(), RenderType.getCutout());
+            RenderTypeLookup.setRenderLayer(ModBlocks.RED_FLOWER_BASE.get(), RenderType.getCutout());
+            RenderTypeLookup.setRenderLayer(ModBlocks.RED_FLOWER_TOP.get(), RenderType.getCutout());
+
         });
     }
 }

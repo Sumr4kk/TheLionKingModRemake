@@ -35,6 +35,10 @@ public class ModItemGroups {
             items.add(new ItemStack(ModItems.MANGO_FRUIT.get()));
             items.add(new ItemStack(ModItems.BANANA_FRUIT.get()));
             items.add(new ItemStack(ModItems.PASSION_FRUIT.get()));
+
+            // ============ ЦВЕТЫ =============
+            items.add(new ItemStack(ModBlocks.RED_FLOWER_BASE.get()));
+            items.add(new ItemStack(ModBlocks.RED_FLOWER_TOP.get()));
         }
     };
 
