@@ -81,6 +81,7 @@ public class ModItemGroups {
 
             // ============= 4. КАМЕНЬ =============
             items.add(new ItemStack(ModBlocks.PRIDESTONE.get()));
+            items.add(new ItemStack(ModBlocks.ORE_PEACOCK.get()));
         }
     };
 }

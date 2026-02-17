@@ -87,6 +87,11 @@ public class ModBlocks {
             .hardnessAndResistance(2.0f, 6.0f).sound(SoundType.STONE)
                     .setRequiresTool().harvestLevel(0).harvestTool(ToolType.PICKAXE)));
 
+    public static final RegistryObject<Block> ORE_PEACOCK = BLOCKS.register("ore_peacock", () ->
+            new Block(AbstractBlock.Properties.create(Material.ROCK)
+                    .hardnessAndResistance(3.0f, 3.0f).sound(SoundType.STONE)
+                    .harvestLevel(2).harvestTool(ToolType.PICKAXE).setRequiresTool()));
+
     // ============= САЖЕНЦЫ (SAPLINGS) =============
     public static final RegistryObject<Block> ACACIASAPLING = BLOCKS.register("acaciasapling", () ->
             new SaplingBlock(new PrideTree(), AbstractBlock.Properties.create(Material.PLANTS)

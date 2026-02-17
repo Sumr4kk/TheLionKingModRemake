@@ -1,7 +1,6 @@
 {
-  "parent": "block/cross",
+  "parent": "item/generated",
   "textures": {
-    "cross": "thelionkingremake:block/red_flower_top"
-  },
-  "render_type": "cutout"
+    "layer0": "thelionkingremake:item/red_flower"
+  }
 }

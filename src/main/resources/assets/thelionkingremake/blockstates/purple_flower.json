@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "thelionkingremake:block/purple_flower_base"
+    },
+    "half=upper": {
+      "model": "thelionkingremake:block/purple_flower_top"
+    }
+  }
+}

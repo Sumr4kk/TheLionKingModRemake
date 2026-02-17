@@ -69,6 +69,9 @@ public class ModItems {
     public static final RegistryObject<Item> PRIDESTONE = ITEMS.register("pridestone",
             () -> new BlockItem(ModBlocks.PRIDESTONE.get(), new Item.Properties().maxStackSize(64)));
 
+    public static final RegistryObject<Item> ORE_PEACOCK_ITEM = ITEMS.register("ore_peacock",
+            () -> new BlockItem(ModBlocks.ORE_PEACOCK.get(), new Item.Properties().maxStackSize(64)));
+
     // ============= САЖЕНЦЫ (SAPLINGS) =============
     public static final RegistryObject<Item> ACACIASAPLING_ITEM = ITEMS.register("acaciasapling",
             () -> new BlockItem(ModBlocks.ACACIASAPLING.get(), new Item.Properties().maxStackSize(64)));
