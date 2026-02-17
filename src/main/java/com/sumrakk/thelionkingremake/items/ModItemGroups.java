@@ -38,7 +38,10 @@ public class ModItemGroups {
 
             // ============ ЦВЕТЫ =============
             items.add(new ItemStack(ModBlocks.RED_FLOWER_BASE.get()));
-            items.add(new ItemStack(ModBlocks.RED_FLOWER_TOP.get()));
+            items.add(new ItemStack(ModBlocks.PURPLE_FLOWER_BASE.get()));
+            items.add(new ItemStack(ModBlocks.PINK_FLOWER.get()));
+            items.add(new ItemStack(ModBlocks.BLUE_FLOWER.get()));
+            items.add(new ItemStack(ModBlocks.WHITE_FLOWER.get()));
         }
     };
 

@@ -4,6 +4,7 @@ import com.sumrakk.thelionkingremake.TheLionKingRemake;
 import com.sumrakk.thelionkingremake.world.gen.tree.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.potion.Effects;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -146,6 +147,31 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> RED_FLOWER_TOP = BLOCKS.register("red_flower_top",
             () -> new DoublePlantBlock(AbstractBlock.Properties.create(Material.PLANTS)
+                    .doesNotBlockMovement().hardnessAndResistance(0.0f).sound(SoundType.PLANT).notSolid()
+                    .setOpaque((state, reader, pos) -> false).setBlocksVision((state, reader, pos) -> false)));
+
+    public static final RegistryObject<Block> PURPLE_FLOWER_BASE = BLOCKS.register("purple_flower_base",
+            () -> new DoublePlantBlock(AbstractBlock.Properties.create(Material.PLANTS)
+                    .doesNotBlockMovement().hardnessAndResistance(0.0f).sound(SoundType.PLANT).notSolid()
+                    .setOpaque((state, reader, pos) -> false).setBlocksVision((state, reader, pos) -> false)));
+
+    public static final RegistryObject<Block> PURPLE_FLOWER_TOP = BLOCKS.register("purple_flower_top",
+            () -> new DoublePlantBlock(AbstractBlock.Properties.create(Material.PLANTS)
+                    .doesNotBlockMovement().hardnessAndResistance(0.0f).sound(SoundType.PLANT).notSolid()
+                    .setOpaque((state, reader, pos) -> false).setBlocksVision((state, reader, pos) -> false)));
+
+    public static final RegistryObject<Block> PINK_FLOWER = BLOCKS.register("pink_flower",
+            () -> new TallGrassBlock(AbstractBlock.Properties.create(Material.PLANTS)
+                    .doesNotBlockMovement().hardnessAndResistance(0.0f).sound(SoundType.PLANT).notSolid()
+                    .setOpaque((state, reader, pos) -> false).setBlocksVision((state, reader, pos) -> false)));
+
+    public static final RegistryObject<Block> BLUE_FLOWER = BLOCKS.register("blue_flower",
+            () -> new TallGrassBlock(AbstractBlock.Properties.create(Material.PLANTS)
+                    .doesNotBlockMovement().hardnessAndResistance(0.0f).sound(SoundType.PLANT).notSolid()
+                    .setOpaque((state, reader, pos) -> false).setBlocksVision((state, reader, pos) -> false)));
+
+    public static final RegistryObject<Block> WHITE_FLOWER = BLOCKS.register("white_flower",
+            () -> new TallGrassBlock(AbstractBlock.Properties.create(Material.PLANTS)
                     .doesNotBlockMovement().hardnessAndResistance(0.0f).sound(SoundType.PLANT).notSolid()
                     .setOpaque((state, reader, pos) -> false).setBlocksVision((state, reader, pos) -> false)));
 }

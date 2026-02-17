@@ -10,8 +10,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import static com.sumrakk.thelionkingremake.blocks.ModBlocks.ARID_GRASS;
-import static com.sumrakk.thelionkingremake.blocks.ModBlocks.RED_FLOWER_BASE;
+import static com.sumrakk.thelionkingremake.blocks.ModBlocks.*;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, TheLionKingRemake.MOD_ID);
@@ -102,8 +101,22 @@ public class ModItems {
     public static final RegistryObject<Item> ARID_GRASS_ITEM = ITEMS.register("arid_grass",
             () -> new BlockItem(ARID_GRASS.get(), new Item.Properties().maxStackSize(64)));
 
-    public static final RegistryObject<Item> FLOWER_ITEM = ITEMS.register("red_flower",
+    // ========== ЦВЕТЫ =================
+
+    public static final RegistryObject<Item> RED_FLOWER_ITEM = ITEMS.register("red_flower",
             () -> new BlockItem(RED_FLOWER_BASE.get(), new Item.Properties().maxStackSize(64)));
+
+    public static final RegistryObject<Item> PURPLE_FLOWER_ITEM = ITEMS.register("purple_flower",
+            () -> new BlockItem(PURPLE_FLOWER_BASE.get(), new Item.Properties().maxStackSize(64)));
+
+    public static final RegistryObject<Item> PINK_FLOWER_ITEM = ITEMS.register("pink_flower",
+            () -> new BlockItem(PINK_FLOWER.get(), new Item.Properties().maxStackSize(64)));
+
+    public static final RegistryObject<Item> BLUE_FLOWER_ITEM = ITEMS.register("blue_flower",
+            () -> new BlockItem(BLUE_FLOWER.get(), new Item.Properties().maxStackSize(64)));
+
+    public static final RegistryObject<Item> WHITE_FLOWER_ITEM = ITEMS.register("white_flower",
+            () -> new BlockItem(WHITE_FLOWER.get(), new Item.Properties().maxStackSize(64)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

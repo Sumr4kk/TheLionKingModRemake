@@ -1,0 +1,7 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "thelionkingremake:block/purple_flower_top"
+  },
+  "render_type": "cutout"
+}

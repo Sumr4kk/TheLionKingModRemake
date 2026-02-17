@@ -27,5 +27,9 @@
   "block.thelionkingremake.wood_passion": "Бревно Маракуйя",
   "block.thelionkingremake.planks_passion": "Доски Маракуйя",
   "block.thelionkingremake.arid_grass": "Сухая Трава",
-  "block.thelionkingremake.red_flower_base": "Красный Цветок"
+  "block.thelionkingremake.red_flower_base": "Красный Цветок",
+  "block.thelionkingremake.purple_flower_base": "Фиолетовый Цветок",
+  "block.thelionkingremake.pink_flower": "Розовый цветок",
+  "block.thelionkingremake.blue_flower": "Синий цветок",
+  "block.thelionkingremake.white_flower": "Белый цветок"
 }
