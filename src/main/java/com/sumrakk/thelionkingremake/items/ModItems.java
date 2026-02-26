@@ -2,6 +2,7 @@ package com.sumrakk.thelionkingremake.items;
 
 import com.sumrakk.thelionkingremake.TheLionKingRemake;
 import com.sumrakk.thelionkingremake.blocks.ModBlocks;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -149,6 +150,18 @@ public class ModItems {
             () -> new HoeItem(ModToolTier.PEACOCK_GEM, -3, 0.0f,
                     new Item.Properties().maxStackSize(1))
     );
+
+    public static final RegistryObject<Item> PEACOCK_HELMET = ITEMS.register("helmet_peacock",
+            () -> new ArmorItem(ModArmorMaterial.PEACOCK, EquipmentSlotType.HEAD, new Item.Properties()));
+
+    public static final RegistryObject<Item> PEACOCK_BODY = ITEMS.register("body_peacock",
+            () -> new ArmorItem(ModArmorMaterial.PEACOCK, EquipmentSlotType.CHEST, new Item.Properties()));
+
+    public static final RegistryObject<Item> PEACOCK_LEGS = ITEMS.register("legs_peacock",
+            () -> new ArmorItem(ModArmorMaterial.PEACOCK, EquipmentSlotType.LEGS, new Item.Properties()));
+
+    public static final RegistryObject<Item> PEACOCK_BOOTS = ITEMS.register("boots_peacock",
+            () -> new ArmorItem(ModArmorMaterial.PEACOCK, EquipmentSlotType.FEET, new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

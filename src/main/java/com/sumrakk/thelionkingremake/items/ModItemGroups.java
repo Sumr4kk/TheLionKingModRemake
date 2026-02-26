@@ -88,7 +88,7 @@ public class ModItemGroups {
         }
     };
 
-    // ============= ВКЛАДКА ДЛЯ БЛОКОВ =============
+    // ============= ВКЛАДКА ДЛЯ ИНСТРЕМЕНТОВ =============
     public static final ItemGroup THE_LION_KING_REMAKE_TOOLS = new ItemGroup("thelionkingremake_tools") {
         @Override
         public ItemStack createIcon() {
@@ -100,7 +100,10 @@ public class ModItemGroups {
         public void fill(NonNullList<ItemStack> items) {
             // Очищаем стандартное наполнение
             items.clear();
-
+            items.add(new ItemStack(ModItems.PEACOCK_HELMET.get()));
+            items.add(new ItemStack(ModItems.PEACOCK_BODY.get()));
+            items.add(new ItemStack(ModItems.PEACOCK_LEGS.get()));
+            items.add(new ItemStack(ModItems.PEACOCK_BOOTS.get()));
             items.add(new ItemStack(ModItems.PEACOCK_SWORD.get()));
             items.add(new ItemStack(ModItems.PEACOCK_PICKAXE.get()));
             items.add(new ItemStack(ModItems.PEACOCK_AXE.get()));

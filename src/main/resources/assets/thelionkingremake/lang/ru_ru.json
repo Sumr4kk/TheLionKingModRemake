@@ -1,6 +1,7 @@
 {
   "itemGroup.thelionkingremake_items": "Король Лев: Ремейк. Предметы",
   "itemGroup.thelionkingremake_blocks": "Король Лев: Ремейк. Блоки",
+  "itemGroup.thelionkingremake_tools": "Король Лев: Ремейк. Инструменты",
   "item.thelionkingremake.logo" : "Логотип",
   "item.thelionkingremake.mango_fruit" : "Манго",
   "item.thelionkingremake.banana_fruit" : "Банан",
@@ -11,6 +12,10 @@
   "item.thelionkingremake.peacock_axe": "Пёстрый Топор",
   "item.thelionkingremake.peacock_shovel": "Пёстрая Лопата",
   "item.thelionkingremake.peacock_hoe": "Пёстрая Мотыга",
+  "item.thelionkingremake.helmet_peacock": "Пёстрый Шлем",
+  "item.thelionkingremake.body_peacock": "Пёстрый Нагрудник",
+  "item.thelionkingremake.legs_peacock": "Пёстрые Поножи",
+  "item.thelionkingremake.boots_peacock": "Пёстрые Ботинки",
   "block.thelionkingremake.acaciasapling" : "Саженец Акации",
   "block.thelionkingremake.acacialeaves" : "Листья Акации",
   "block.thelionkingremake.pridestone" : "Камень Прайда",

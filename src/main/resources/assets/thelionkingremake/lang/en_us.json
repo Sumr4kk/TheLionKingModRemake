@@ -1,6 +1,7 @@
 {
   "itemGroup.thelionkingremake_items": "The Lion King: Remake. Items",
   "itemGroup.thelionkingremake_blocks": "The Lion King: Remake. Blocks",
+  "itemGroup.thelionkingremake_tools": "The Lion King: Remake. Tools",
   "item.thelionkingremake.logo" : "Logo",
   "item.thelionkingremake.mango_fruit" : "Mango",
   "item.thelionkingremake.banana_fruit" : "Banana",
@@ -11,6 +12,10 @@
   "item.thelionkingremake.peacock_axe": "Peacock Axe",
   "item.thelionkingremake.peacock_shovel": "Peacock Shovel",
   "item.thelionkingremake.peacock_hoe": "Peacock Hoe",
+  "item.thelionkingremake.helmet_peacock": "Peacock Helmet",
+  "item.thelionkingremake.body_peacock": "Peacock Chestplate",
+  "item.thelionkingremake.legs_peacock": "Peacock Leggings",
+  "item.thelionkingremake.boots_peacock": "Peacock Boots",
   "block.thelionkingremake.acaciasapling" : "Acacia Sapling",
   "block.thelionkingremake.acacialeaves" : "Acacia Leaves",
   "block.thelionkingremake.pridestone" : "Pride Stone",
