@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "thelionkingremake:peacock_gem"
+    },
+    "X": {
+      "item": "minecraft:elytra"
+    }
+  },
+  "result": {
+    "item": "thelionkingremake:peacock_elytra"
+  }
+}

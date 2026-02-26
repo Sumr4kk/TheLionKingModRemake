@@ -100,6 +100,7 @@ public class ModItemGroups {
         public void fill(NonNullList<ItemStack> items) {
             // Очищаем стандартное наполнение
             items.clear();
+            items.add(new ItemStack(ModItems.PEACOCK_ELYTRA.get()));
             items.add(new ItemStack(ModItems.PEACOCK_HELMET.get()));
             items.add(new ItemStack(ModItems.PEACOCK_BODY.get()));
             items.add(new ItemStack(ModItems.PEACOCK_LEGS.get()));

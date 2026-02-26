@@ -2,6 +2,7 @@ package com.sumrakk.thelionkingremake.items;
 
 import com.sumrakk.thelionkingremake.TheLionKingRemake;
 import com.sumrakk.thelionkingremake.blocks.ModBlocks;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -162,6 +163,15 @@ public class ModItems {
 
     public static final RegistryObject<Item> PEACOCK_BOOTS = ITEMS.register("boots_peacock",
             () -> new ArmorItem(ModArmorMaterial.PEACOCK, EquipmentSlotType.FEET, new Item.Properties()));
+
+    public static final RegistryObject<Item> PEACOCK_ELYTRA = ITEMS.register("peacock_elytra",
+            () -> new ElytraItem(new Item.Properties().maxStackSize(1).rarity(Rarity.RARE).maxDamage(600))
+            {
+                @Override
+                public EquipmentSlotType getEquipmentSlot(ItemStack stack) {
+                    return EquipmentSlotType.CHEST;
+                }
+            });
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

@@ -2,8 +2,10 @@ package com.sumrakk.thelionkingremake.client;
 
 import com.sumrakk.thelionkingremake.TheLionKingRemake;
 import com.sumrakk.thelionkingremake.blocks.ModBlocks;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.entity.PlayerRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -14,6 +16,7 @@ public class ClientEvents {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
+            // ===== РЕНДЕР РАСТЕНИЙ =====
             RenderTypeLookup.setRenderLayer(ModBlocks.ACACIASAPLING.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.RAINFORESTSAPLING.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.MANGOSAPLING.get(), RenderType.getCutout());
@@ -30,6 +33,21 @@ public class ClientEvents {
             RenderTypeLookup.setRenderLayer(ModBlocks.PINK_FLOWER.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.BLUE_FLOWER.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.WHITE_FLOWER.get(), RenderType.getCutout());
+
+            // ===== РЕНДЕР ЭЛИТР =====
+            // Для всех скинов игроков
+            Minecraft.getInstance().getRenderManager().getSkinMap().forEach((name, renderer) -> {
+                renderer.addLayer(new PeacockElytraLayer<>(renderer));
+            });
+
+            // Для текущего игрока (исправлено!)
+            if (Minecraft.getInstance().player != null) {
+                PlayerRenderer currentPlayerRenderer = (PlayerRenderer) Minecraft.getInstance().getRenderManager()
+                        .getRenderer(Minecraft.getInstance().player);
+                if (currentPlayerRenderer != null) {
+                    currentPlayerRenderer.addLayer(new PeacockElytraLayer<>(currentPlayerRenderer));
+                }
+            }
         });
     }
 }
